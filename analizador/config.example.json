@@ -1,0 +1,13 @@
+{
+  "servidor": "http://192.168.1.10:8000",
+  "token": "pon-una-clave-de-16-o-mas-caracteres",
+  "modelo": "yolov8n.pt",
+  "noche": ["18:00", "06:00"],
+  "camaras": [
+    {"nombre": "Entrada", "zona": "Entrada", "rtsp": "rtsp://usuario:clave@192.168.1.20:554/stream1",
+     "modulos": ["per", "veh"], "confianza": 0.6, "horario": "Siempre", "confirmar": 3, "espera": 30,
+     "poligono": [[0.1, 0.4], [0.9, 0.4], [0.9, 1.0], [0.1, 1.0]]},
+    {"nombre": "Patio trasero", "zona": "Patio", "rtsp": "rtsp://usuario:clave@192.168.1.21:554/stream1",
+     "modulos": ["per", "mer"], "confianza": 0.55, "horario": "Noche", "merodeo_seg": 20}
+  ]
+}

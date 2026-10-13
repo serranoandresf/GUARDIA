@@ -1,0 +1,17 @@
+services:
+  servidor:
+    build: { context: ., dockerfile: servidor/Dockerfile }
+    environment:
+      GUARDIA_TOKEN: ${GUARDIA_TOKEN}
+      GUARDIA_ORIGENES: ${GUARDIA_ORIGENES:-}
+      NTFY_TOPIC: ${NTFY_TOPIC:-}
+    volumes: ["datos:/datos"]
+    ports: ["8000:8000"]
+    restart: unless-stopped
+  video:
+    image: alexxit/go2rtc
+    network_mode: host
+    volumes: ["./go2rtc.yaml:/config/go2rtc.yaml"]
+    restart: unless-stopped
+volumes:
+  datos:

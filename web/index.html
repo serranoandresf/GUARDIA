@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardia</title>
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#090b11">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Guardia">
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#eceef4,#090b11);--s1:light-dark(#fff,#131723);--s2:light-dark(#f4f5f9,#1b2030);--s3:light-dark(#e1e4ed,#2a3043);--tx:light-dark(#0e1120,#eef0f8);--mu:light-dark(#596078,#98a0b9);--bd:light-dark(#d9dce7,#262c3f);--ac:light-dark(#ff5a2c,#ff7a4f);--on:#16100d;--ok:light-dark(#157a3d,#46d37f);--wn:light-dark(#a8530a,#f5b64a);--er:light-dark(#cf2a22,#ff8478);--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--f:"SF Pro Text",-apple-system,"Segoe UI Variable Text","Segoe UI",Roboto,system-ui,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 var(--f);letter-spacing:-.006em;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:6px}
+.top{position:sticky;top:0;z-index:5;padding-top:var(--sat);background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(18px);border-bottom:1px solid var(--bd)}
+.top div{max-width:820px;margin:0 auto;height:54px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.03em}
+.mk{width:28px;height:28px;border-radius:9px;background:var(--tx);color:var(--bg);display:grid;place-items:center}
+main{max-width:820px;margin:0 auto;padding:14px 16px calc(90px + var(--sab))}
+.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex:none}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;padding:6px 8px calc(6px + var(--sab));background:color-mix(in srgb,var(--s1) 90%,transparent);backdrop-filter:blur(18px);border-top:1px solid var(--bd)}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;border:0;background:none;color:var(--mu);font-size:11px;font-weight:600;cursor:pointer}
+.nav i{display:grid;place-items:center;width:54px;height:30px;border-radius:99px}
+.nav [aria-current]{color:var(--tx)}.nav [aria-current] i{background:var(--ac);color:var(--on)}
+h2{font-size:28px;font-weight:800;letter-spacing:-.035em;line-height:1.12;margin:6px 0 2px;text-wrap:balance}
+h3{font-size:17px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px}p{margin:6px 0}
+.mu{color:var(--mu);font-size:13px}.ok{color:var(--ok)}.wn{color:var(--wn)}.er{color:var(--er)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{justify-content:space-between}.g{flex:1;min-width:0}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:18px;padding:16px;margin:10px 0}
+.sec{margin:24px 2px 6px;font-size:13px;font-weight:700;color:var(--mu)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:0 16px;border:0;border-radius:14px;background:var(--tx);color:var(--bg);font-weight:650;cursor:pointer}
+.btn.s{background:var(--s2);color:var(--tx);box-shadow:inset 0 0 0 1.5px var(--bd)}.btn.a{background:var(--ac);color:var(--on)}.btn.d{background:color-mix(in srgb,var(--er) 12%,var(--s1));color:var(--er)}
+.btn.sm{min-height:36px;padding:0 12px;font-size:13.5px;border-radius:11px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;background:var(--s2);color:var(--mu);font-size:12px;font-weight:650;box-shadow:inset 0 0 0 1px var(--bd)}
+.chip.ok{color:var(--ok)}.chip.wn{color:var(--wn)}.chip.er{color:var(--er)}.chip.ac{background:var(--ac);color:var(--on);box-shadow:none}
+.seg{display:flex;gap:2px;padding:3px;border-radius:14px;background:var(--s3)}
+.seg button{flex:1;min-height:36px;border:0;border-radius:11px;background:none;color:var(--mu);font-size:13.5px;font-weight:650;cursor:pointer}
+.seg [aria-pressed=true]{background:var(--s1);color:var(--tx);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+input,select{display:block;width:100%;min-height:44px;margin:0 0 12px;padding:0 13px;border:1.5px solid transparent;border-radius:12px;background:var(--s2);color:var(--tx);font:inherit;font-size:16px}
+input:focus,select:focus{outline:0;border-color:var(--ac)}
+input[type=checkbox]{display:inline-block;width:20px;height:20px;min-height:0;margin:0 10px 0 0;accent-color:var(--ac)}
+input[type=range]{padding:0;accent-color:var(--ac)}
+label.k{display:flex;align-items:center;padding:6px 0;font-size:14.5px}
+.lb{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin-bottom:4px}
+canvas{width:100%;aspect-ratio:16/9;display:block;border-radius:12px;background:#10141f}
+pre{white-space:pre-wrap;font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:8px 0 0;padding:12px;border-radius:12px;background:var(--s2);overflow-x:auto}
+.bar{height:10px;border-radius:9px;background:var(--s3);overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.big{font-size:56px;font-weight:800;letter-spacing:-.05em;line-height:1}
+.it{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--bd)}.it:first-of-type{border-top:0}
+summary{cursor:pointer;font-weight:650;min-height:36px;display:flex;align-items:center}
+#toast{position:fixed;left:50%;bottom:calc(84px + var(--sab));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:14px;font-weight:600;z-index:9}
+.hero{display:flex;gap:16px;align-items:center;margin:10px 0;padding:20px;border-radius:24px;background:var(--s1);border:1px solid var(--bd)}
+.hero .orb{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--c) 16%,var(--s1));color:var(--c);box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 10%,transparent)}
+.hero .orb .ic{width:30px;height:30px}.hero h2{margin:0;font-size:24px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.tiles button{min-height:84px;border:1.5px solid var(--bd);border-radius:18px;background:var(--s1);color:var(--tx);font-weight:700;font-size:13.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.tiles button[aria-pressed=true]{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.nav i{position:relative}.nav b{position:absolute;top:-4px;right:6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--ac);color:var(--on);font-size:11px;display:grid;place-items:center}
+.sos{width:100%;min-height:54px;font-size:16px;margin-bottom:6px}
+#toast button{margin-left:12px;border:0;background:none;color:var(--ac);font-weight:700;cursor:pointer;font-size:15px}
+a.btn{text-decoration:none}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+:root{--r:20px}
+h2{font-size:34px;letter-spacing:-.04em}
+.card{border:0;border-radius:var(--r);box-shadow:0 0 0 .5px color-mix(in srgb,var(--tx) 10%,transparent)}
+.hero{border-radius:calc(var(--r) + 4px)}.tiles button{border-radius:var(--r)}.btn{border-radius:calc(var(--r) * .7)}
+label.k{flex-direction:row-reverse;justify-content:space-between;min-height:44px}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;position:relative;width:51px;height:31px;margin:0;border-radius:99px;background:var(--s3);cursor:pointer;transition:background .2s}
+input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.3);transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
+input[type=checkbox]:checked{background:var(--ac)}input[type=checkbox]:checked::after{transform:translateX(20px)}
+.sw{width:32px;height:32px;padding:0;border:3px solid var(--s1);border-radius:50%;box-shadow:0 0 0 1.5px var(--bd);cursor:pointer}.sw[aria-pressed=true]{box-shadow:0 0 0 2.5px var(--tx)}
+input[type=color]{width:44px;min-height:34px;padding:2px;margin:0}
+.hr{display:flex;align-items:flex-end;gap:3px;height:72px;margin:10px 0}.hr i{flex:1;border-radius:3px 3px 0 0;background:var(--s3)}.hr i.on{background:var(--ac)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.snap img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;background:var(--s3)}.snap p{margin:0;padding:28px 12px;text-align:center;background:var(--s2);border-radius:12px}
+@media(min-width:900px){body{padding-left:200px}.nav{top:0;right:auto;width:200px;flex-direction:column;justify-content:flex-start;gap:4px;padding:70px 12px;border-top:0;border-right:1px solid var(--bd);background:var(--s1)}.nav button{flex:none;flex-direction:row;gap:10px;font-size:14.5px}.nav i{width:40px;height:34px}.top div,main{max-width:820px}#toast{bottom:28px}}
+@media(prefers-reduced-motion:no-preference){.btn:active{transform:scale(.97)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/></symbol>
+<symbol id="cam" viewBox="0 0 24 24"><path d="M3 7h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3zM16 11l5-3v8l-5-3"/></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+<symbol id="up" viewBox="0 0 24 24"><path d="M4 17l5-5 4 4 7-8M15 8h5v5"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol><symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol><symbol id="unlock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-1.5"/></symbol></defs></svg>
+<header class="top"><div><span class="brand"><span class="mk"><svg class="ic"><use href="#shield"/></svg></span>Guardia</span><span class="chip" id="st"></span></div></header>
+<main id="v"></main>
+<nav class="nav" id="nav"></nav>
+<div id="toast" hidden></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MODES={hogar:'Hogar',negocio:'Negocio',rural:'Finca o zona rural'};
+const ZON={hogar:['Entrada','Patio','Garaje','Interior','Perímetro'],negocio:['Caja','Bodega','Entrada','Parqueadero','Pasillo'],rural:['Portón','Cerco','Establo','Cultivo','Camino']};
+const MOD={per:['Personas',['person']],veh:['Vehículos',['car','truck','motorcycle']],ani:['Animales',['dog','cat','cow','horse','sheep']],mer:['Merodeo',['person']],mov:['Movimiento (sin IA)',['movimiento']]};
+const ARM={off:'Desarmado',per:'Perímetro',tot:'Armado total'};
+const CK={
+com:[['luz','Luz exterior con sensor de movimiento','Una zona oscura le da tiempo al intruso.',8],['cer','Cerraduras de seguridad en todas las puertas','Cambia las que tengan más de 10 años o llaves copiadas.',9],['avi','Aviso visible de vigilancia','Un letrero con cámara disuade antes de que llegue a la puerta.',5],['ups','Respaldo de energía e internet para las cámaras','Un UPS pequeño mantiene el sistema horas sin luz.',8],['cla','Claves nuevas en router y cámaras','Las claves de fábrica son la entrada más fácil.',9],['con','Contactos de emergencia cargados','Quién recibe el aviso cuando nadie responde.',5]],
+hogar:[['rej','Rejas en ventanas y claraboyas bajas','',8],['pta','Puerta principal reforzada con 3 puntos de cierre','',8],['sen','Sensores en puertas y ventanas','',7],['sir','Sirena interior de 100 dB o más','',6],['vec','Acuerdo de aviso con vecinos','',5]],
+negocio:[['caj','Caja fuerte anclada al piso','',8],['res','Respaldo del video fuera del local','Si se llevan el grabador, el video sigue a salvo.',9],['cor','Cortina metálica o reja en el acceso','',8],['hor','Registro de apertura y cierre','',5],['pan','Botón de pánico conectado a la app','',7]],
+rural:[['cr1','Cerca perimetral o cerco vivo','',7],['por','Portón con candado y cámara','',8],['enl','Conexión estable: antena, satélite o LoRa','Sin enlace, la cámara solo graba y nadie se entera.',9],['pe2','Perros o alarma por animales','',5],['sol','Cámaras con panel solar y batería','',7],['bod','Herramientas y combustible bajo llave','',7]]};
+const list=()=>CK.com.concat(CK[S.mode]);
+let S={mode:'hogar',arm:'off',tab:'ini',cams:[],done:{},ev:[],con:[],nid:1,seen:0,ui:{t:'auto',c:'',r:20,z:1},srv:{u:'',k:'',v:''}};
+try{const j=localStorage.getItem('guardia');if(j)Object.assign(S,JSON.parse(j))}catch(e){}
+try{if(!S.srv.k)S.srv.k=sessionStorage.getItem('gk')||''}catch(e){}
+if(!S.srv.u&&/^\/panel\//.test(location.pathname))S.srv.u=location.origin;
+const save=()=>{try{localStorage.setItem('guardia',JSON.stringify({...S,zn:null,srv:{...S.srv,k:S.srv.rec?S.srv.k:''}}));if(S.srv.k)sessionStorage.setItem('gk',S.srv.k)}catch(e){}progAj()};
+const API=async(p,o={})=>{const r=await fetch(S.srv.u.replace(/\/$/,'')+p,{...o,headers:{'x-token':S.srv.k,'content-type':'application/json'}});if(!r.ok)throw new Error(r.status);return r.json()};
+const NOM={movimiento:'Movimiento detectado',merodeo:'Persona merodeando',sos:'Ayuda solicitada',person:'Persona detectada',car:'Vehículo detectado',truck:'Vehículo detectado',motorcycle:'Vehículo detectado',dog:'Animal detectado',cat:'Animal detectado',cow:'Animal detectado',horse:'Animal detectado',sheep:'Animal detectado'};
+async function sync(q){if(!S.srv.u)return;try{const y=await API('/sistema'),nd=!y.fuentes.length||y.fuentes.some(f=>f.caido),ch=nd!=S.down||y.armado!=S.arm;S.down=nd;S.arm=y.armado;SYS.y=y;SYS.err='';try{await bajarAj()}catch(x){}if(ch&&!document.activeElement.matches('input,select'))render();const a=await API('/alertas'),vis=new Set(S.ev.map(e=>e.id)),nu=a.filter(x=>!vis.has(x.id)&&x.estado!='falsa_alarma');nu.forEach(x=>S.ev.unshift({id:x.id,t:NOM[x.tipo]||x.tipo,c:x.camara,at:x.hora*1000,l:x.tipo=='person'||x.tipo=='merodeo'?'er':'wn',foto:x.foto}));if(nu.length){S.ev.sort((a,b)=>b.at-a.at);S.ev=S.ev.slice(0,50);save();toast(nu.length+' alerta(s) nueva(s)');try{if(Notification.permission=='granted')new Notification('Guardia',{body:NOM[nu[0].tipo]||nu[0].tipo})}catch(e){}if(S.tab=='ale'||S.tab=='ini')render()}else if(!q)toast('Sin alertas nuevas')}catch(e){const nuevo=!SYS.err;SYS.err=String(e.message||e);if(!q)toast('No se pudo conectar al servidor');else if(nuevo&&S.tab=='ini'&&!document.activeElement.matches('input,select'))render()}}
+const uid=()=>crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c=='x'?r:r&3|8).toString(16)});
+const slug=n=>n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+const PAL=['#ff5a2c','#0a84ff','#30d158','#bf5af2','#ff375f','#ffd60a'];
+const SC={hogar:[['Salgo de casa','tot'],['Me voy a dormir','per'],['Estoy en casa','off']],negocio:[['Cerrar el local','tot'],['Horario de atención','off'],['Turno de noche','per']],rural:[['Salgo de la finca','tot'],['Noche en la finca','per'],['Estoy en la finca','off']]};
+function ui(){const u=S.ui,d=document.documentElement;d.dataset.theme=u.t=='auto'?'':u.t;if(/^#[0-9a-f]{6}$/i.test(u.c)){d.style.setProperty('--ac',u.c);d.style.setProperty('--on',cr(lum(u.c),.006)>=cr(lum(u.c),1)?'#111':'#fff')}else{d.style.removeProperty('--ac');d.style.removeProperty('--on')}d.style.setProperty('--r',u.r+'px');document.body.style.zoom=u.z}
+const setArm=k=>{S.arm=k;if(navigator.vibrate)navigator.vibrate(10);if(S.srv.u)API('/estado',{method:'PUT',body:JSON.stringify({armado:k})}).catch(()=>toast('Cambio solo en este equipo: servidor sin conexión'))};
+const CAPA={luz:'Disuadir',avi:'Disuadir',vec:'Disuadir',pe2:'Disuadir',sol:'Disuadir',cer:'Demorar',rej:'Demorar',pta:'Demorar',cor:'Demorar',caj:'Demorar',cr1:'Demorar',por:'Demorar',bod:'Demorar',sen:'Detectar',sir:'Detectar',ups:'Detectar',cla:'Detectar',enl:'Detectar',res:'Detectar',hor:'Detectar',con:'Responder',pan:'Responder'};
+const PL={generica:'/stream1',hikvision:'/Streaming/Channels/101',dahua:'/cam/realmonitor?channel=1&subtype=0',amcrest:'/cam/realmonitor?channel=1&subtype=0',tapo:'/stream1',reolink:'/h264Preview_01_main',axis:'/axis-media/media.amp',foscam:'/videoMain'};
+const MK={generica:'Otra o desconocida',hikvision:'Hikvision',dahua:'Dahua',amcrest:'Amcrest',tapo:'TP-Link Tapo',reolink:'Reolink',axis:'Axis',foscam:'Foscam'};
+const fuente=(t,m,d)=>{d=d.trim();if(t=='usb')return /^\d{1,2}$/.test(d)?d:'';if(t=='rtsp'&&d&&!/^[a-z]+:\/\//i.test(d)){const h=d.replace(/\/.*$/,'');return 'rtsp://'+h+(/:\d+$/.test(h)?'':':554')+(PL[m]||'/stream1')}return d};
+const okFuente=(t,u)=>t=='usb'?/^\d{1,2}$/.test(u):t=='rtsp'?/^rtsps?:\/\//i.test(u):t=='archivo'?u.length>0:/^https?:\/\//i.test(u);
+const SYS={y:null,err:''},EST={caida:'sin señal',tapada:'imagen tapada u oscura',congelada:'imagen congelada',error:'error al analizar',conectando:'conectando'};
+const caidas=()=>SYS.y?SYS.y.fuentes.flatMap(f=>Object.entries(f.camaras).filter(x=>x[1]!='ok')):[];
+function salud(){const L=[],ok=t=>L.push(['ok',t]),w=(t,d)=>L.push(['wn',t,d]),e=(t,d)=>L.push(['er',t,d]),y=SYS.y;
+if(!S.srv.u)e('El servidor no está conectado: no llegan alertas ni se comparte el estado.','aju');
+else if(SYS.err)e('No se pudo consultar el servidor ('+SYS.err+'). Revisa dirección y token.','aju');
+else if(!y)w('Aún no se ha consultado el servidor.','aju');
+else{if(y.fuentes.length)ok('El analizador está en línea.');else e('El analizador nunca se ha conectado.','aju');
+y.fuentes.forEach(f=>{if(f.caido)e('El analizador no responde desde hace '+Math.round(f.hace_s/60)+' min.','aju')});caidas().forEach(x=>e('Cámara "'+x[0]+'": '+(EST[x[1]]||x[1])+'.','cam'))}
+if(/^http:\/\//i.test(S.srv.u)&&!/localhost|127\.|192\.168\.|\/\/10\.|172\.(1[6-9]|2\d|3[01])\./.test(S.srv.u))e('El servidor usa HTTP fuera de tu red: el token viaja sin cifrar.','aju');
+if(!S.cams.length)w('No hay cámaras registradas.','cam');
+S.cams.forEach(c=>{if(S.srv.u&&!(c.p&&c.p.length))w('"'+c.n+'" vigila todo el cuadro: marca una zona para reducir falsos avisos.','cam');const q=FI[slug(c.n)];if(q&&q.consejos&&q.consejos[0]!='La imagen es buena para analizar.')w('"'+c.n+'": '+q.consejos[0],'cam')});
+if(!S.con.length)w('No tienes contactos de aviso.','aju');
+try{if(Notification.permission!='granted')w('Las notificaciones del navegador están desactivadas.','aju')}catch(x){}
+if(!list().some(x=>S.done[x[0]]=='si'))w('No has marcado ninguna medida de seguridad.','mej');
+const zs=ZON[S.mode].filter(z=>!S.cams.some(c=>c.z==z));if(zs.length&&S.cams.length)w('Zonas sin cámara: '+zs.join(', ')+'.','mej');
+if(!L.some(x=>x[0]!='ok'))ok('Todo lo revisable está en orden.');
+return L.sort((a,b)=>'er wn ok'.indexOf(a[0])-'er wn ok'.indexOf(b[0]))}
+// <riesgo>
+const QS={com:[['solo','¿Cuánto tiempo queda el lugar sin nadie?',['Casi nunca','Algunas horas al día','Días o semanas'],['Detectar','Responder']],['valor','¿Cuánto valor hay que proteger (equipos, herramientas, dinero, animales)?',['Poco','Moderado','Alto'],['Demorar','Detectar']],['vec','¿Hay vecinos o personas que puedan ver y avisar?',['Siempre','A veces','Casi nunca'],['Disuadir','Responder']],['inc','¿Ha habido robos o intentos?',['No que yo sepa','En la zona','Aquí mismo'],['Disuadir','Demorar']],['ayu','¿Cuánto tardaría en llegar ayuda?',['Menos de 10 min','10 a 30 min','Más de 30 min'],['Demorar','Responder']]],
+hogar:[['dep','¿Viven niños, adultos mayores o personas que dependen de otros?',['No','Alguno','Varios'],['Detectar','Responder']]],
+negocio:[['efe','¿Manejas efectivo o inventario de alto valor?',['Poco','Moderado','Mucho'],['Demorar','Detectar']]],
+rural:[['int','¿Qué tan estable es la conexión a internet?',['Estable','Intermitente','No hay'],['Detectar','Responder']]]};
+const lum=h=>{const n=parseInt(h.slice(1),16),f=v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};return .2126*f(n>>16)+.7152*f(n>>8&255)+.0722*f(n&255)};
+const cr=(a,b)=>(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+function riesgo(resp,items,qs,capa,hecho){const nec={Disuadir:0,Detectar:0,Demorar:0,Responder:0},por={};let n=0,tot=0;
+qs.forEach(q=>{const v=resp[q[0]];if(v==null)return;n++;tot+=v;q[3].forEach(c=>{nec[c]+=v;(por[c]=por[c]||[]).push([v,q])})});
+const pct=n?tot/(2*n):0,nivel=n<qs.length?null:pct<.3?'Bajo':pct<.6?'Medio':'Alto',mx=Math.max(1,...Object.values(nec));
+const plan=items.filter(x=>!hecho.has(x[0])).map(x=>{const c=capa[x[0]],w=x[3]*(1+(c?nec[c]:0)/mx),top=c&&por[c]?por[c].slice().sort((a,b)=>b[0]-a[0])[0]:null;
+return{id:x[0],t:x[1],capa:c||'',prio:Math.round(w*10)/10,motivo:top&&top[0]>0?'Pesa más porque respondiste «'+top[1][2][top[0]]+'» a: '+top[1][1]:'Medida base recomendada.'}}).sort((a,b)=>b.prio-a.prio);
+return{nivel,pct,nec,plan}}
+const reduccion=(plan,id)=>{const t=plan.reduce((a,x)=>a+x.prio,0),x=plan.find(y=>y.id==id);return t&&x?Math.round(100*x.prio/t):0};
+function resumen(a,ahora,dias=7){const d=a.filter(x=>x.hora*1000>ahora-dias*864e5),por={},fal={},h=Array(24).fill(0);let fa=0;
+d.forEach(x=>{por[x.camara]=(por[x.camara]||0)+1;if(x.estado=='falsa_alarma'){fa++;fal[x.camara]=(fal[x.camara]||0)+1}h[new Date(x.hora*1000).getHours()]++});
+const top=Object.entries(por).sort((a,b)=>b[1]-a[1]),pk=h.indexOf(Math.max(...h)),cons=[];
+top.forEach(([c,n])=>{if(n>=5&&(fal[c]||0)/n>.4)cons.push('"'+c+'": más del 40% son falsas alarmas. Marca una zona o sube la confianza.')});
+if(d.length>=5)cons.push('Más actividad hacia las '+pk+':00.');
+return{total:d.length,falsas:fa,top:top.slice(0,3),pico:d.length?pk:null,cons}}
+// </riesgo>
+const avisoColor=()=>{const c=/^#[0-9a-f]{6}$/i.test(S.ui.c)?S.ui.c:'#ff5a2c',osc=S.ui.t=='dark'||(S.ui.t=='auto'&&matchMedia('(prefers-color-scheme:dark)').matches);return cr(lum(c),lum(osc?'#090b11':'#eceef4'))<3?'<p class="mu er">Este color contrasta poco con el fondo actual: elige uno más '+(osc?'claro':'oscuro')+'.</p>':''};
+function evalCard(){const qs=QS.com.concat(QS[S.mode]),rq=S.rq||{},hecho=new Set(list().filter(x=>S.done[x[0]]=='si').map(x=>x[0])),ok=qs.every(q=>rq[q[0]]!=null);
+let h='<div class="card"><h3>Evalúa tu lugar</h3><p class="mu">Responde y la app ordena las medidas según tu situación. Es una guía de prioridades, no una medición del riesgo real.</p>'+qs.map(q=>`<span class="lb" style="margin-top:12px">${q[1]}</span><div class="seg">${q[2].map((o,i)=>`<button data-a="rq" data-q="${q[0]}" data-k="${i}" aria-pressed="${rq[q[0]]===i}">${o}</button>`).join('')}</div>`).join('');
+if(ok){const r=riesgo(rq,list(),qs,CAPA,hecho);h+=`<div class="row sp" style="margin-top:14px"><b>Prioridad de protección</b><span class="chip ${r.nivel=='Alto'?'er':r.nivel=='Medio'?'wn':'ok'}">${r.nivel}</span></div><div class="sec" style="margin:12px 0 4px">Plan recomendado</div>`+(r.plan.length?r.plan.slice(0,5).map(x=>`<div class="it"><div class="g"><b>${esc(x.t)}</b><br><span class="mu">${x.capa?esc(x.capa)+' · ':''}${esc(x.motivo)}</span></div><div class="row"><button class="btn s sm" data-a="qs" data-k="${x.id}">¿Y si?</button><button class="btn s sm" data-a="plan" data-k="${x.id}">Planear</button></div></div>`).join(''):'<p class="ok">Ya cubriste todas las medidas de esta lista.</p>')}
+return h+'</div>'}
+let AJT=null,AJH='';
+const datosAj=()=>({cams:S.cams,done:S.done,rq:S.rq||{},con:S.con,mode:S.mode,nid:S.nid});
+function progAj(){if(!S.srv.u)return;const h=JSON.stringify(datosAj());if(h===AJH)return;clearTimeout(AJT);AJT=setTimeout(()=>{API('/ajustes',{method:'PUT',body:JSON.stringify({datos:datosAj()})}).then(x=>{S.ajv=x.v;AJH=JSON.stringify(datosAj())}).catch(()=>{})},1500)}
+async function bajarAj(){if(!S.srv.u)return;const r=await API('/ajustes'),d=r.datos||{},hay=S.cams.length||S.con.length;
+if(r.v>(S.ajv||0)&&Array.isArray(d.cams)){if((S.ajv||0)==0&&hay&&!confirm('El servidor ya tiene una configuración guardada. ¿Usarla en este dispositivo? Aceptar reemplaza las cámaras y contactos de aquí; Cancelar conserva los de aquí y actualiza el servidor.')){S.ajv=r.v;AJH='';save();return}
+S.cams=d.cams.filter(c=>c&&typeof c.n=='string'&&typeof c.u=='string'&&Array.isArray(c.m));S.done=d.done||{};S.rq=d.rq||{};S.con=Array.isArray(d.con)?d.con:[];if(MODES[d.mode])S.mode=d.mode;S.nid=Math.max(S.nid,d.nid||1);S.ajv=r.v;AJH=JSON.stringify(datosAj());save();if(!document.activeElement.matches('input,select'))render()}
+else if(r.v==0&&hay){AJH='';progAj()}}
+let UN=null,DEV=[],DEVTOK='',ZI=null,INF=null,USR=[],TFA=null,AUD=[];const snap=()=>{try{UN=JSON.stringify(S)}catch(e){}};
+const toast=(t,u)=>{const e=$('#toast');e.textContent=t;if(u){const b=document.createElement('button');b.textContent='Deshacer';b.dataset.a='undo';e.append(b)}e.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>e.hidden=true,u?6000:2500)};
+const score=()=>{const l=list();let t=0,d=0;l.forEach(x=>{t+=x[3];if(S.done[x[0]]=='si')d+=x[3]});const zz=ZON[S.mode];t+=20;d+=20*zz.filter(a=>S.cams.some(c=>c.z==a)).length/zz.length;return Math.round(100*d/t)};
+const lvl=n=>n<40?['Faltan muchas','er']:n<70?['Faltan algunas','wn']:['Casi todas','ok'];
+const ago=t=>{const m=Math.round((Date.now()-t)/60000);return m<1?'ahora':m<60?`hace ${m} min`:`hace ${Math.round(m/60)} h`};
+const ico=n=>`<svg class="ic"><use href="#${n}"/></svg>`;
+const chips=m=>m.map(k=>`<span class="chip">${MOD[k][0]}</span>`).join(' ');
+function py(c){return JSON.stringify({nombre:c.n,zona:c.z,fuente:c.u,tipo:c.t||'rtsp',modulos:c.m,confianza:c.s/100,horario:c.h,confirmar:3,espera:30,merodeo_seg:20,poligono:c.p||[]},null,2)}
+function zdraw(){const cv=$('#zc');if(!cv||!S.zn)return;const x=cv.getContext('2d'),w=cv.width,h=cv.height,p=S.zn.pts;x.fillStyle='#10141f';x.fillRect(0,0,w,h);if(ZI&&ZI.complete&&ZI.naturalWidth)x.drawImage(ZI,0,0,w,h);
+if(p.length){x.beginPath();p.forEach((q,i)=>i?x.lineTo(q[0]*w,q[1]*h):x.moveTo(q[0]*w,q[1]*h));if(p.length>2)x.closePath();x.fillStyle='#ff7a4f44';x.fill();x.strokeStyle='#ff7a4f';x.lineWidth=2;x.stroke();p.forEach(q=>{x.beginPath();x.arc(q[0]*w,q[1]*h,5,0,7);x.fillStyle='#ff7a4f';x.fill()})}else{x.fillStyle='#ffffffcc';x.font='14px system-ui';x.fillText('Toca para marcar la zona que debe vigilar',14,24)}}
+document.addEventListener('click',e=>{if(e.target.id!='zc'||!S.zn)return;const b=e.target.getBoundingClientRect();S.zn.pts.push([+((e.clientX-b.left)/b.width).toFixed(3),+((e.clientY-b.top)/b.height).toFixed(3)]);zdraw()});
+function loadSnaps(){document.querySelectorAll('[data-s]').forEach(d=>{if(!S.srv.u)return;const k=d.dataset.s,im=d.querySelector('img'),ms=d.querySelector('p'),show=u=>{im.src=u;im.hidden=false;ms.hidden=true};if(SN[k])show(SN[k]);fetch(S.srv.u.replace(/\/$/,'')+'/captura/'+k,{headers:{'x-token':S.srv.k}}).then(x=>x.ok?x.blob():Promise.reject()).then(b=>{SN[k]=URL.createObjectURL(b);show(SN[k])}).catch(()=>{})})}
+const FI={};
+function loadFichas(){if(!S.srv.u)return;fetch(S.srv.u.replace(/\/$/,'')+'/camaras',{headers:{'x-token':S.srv.k}}).then(x=>x.ok?x.json():Promise.reject()).then(a=>{a.forEach(f=>FI[f.slug]=f.ficha);document.querySelectorAll('[data-f]').forEach(d=>{const q=FI[d.dataset.f];if(!q)return;d.innerHTML=`<div class="row" style="margin-top:10px"><span class="chip">${q.ancho}×${q.alto}</span><span class="chip ${q.fps<5?'wn':''}">${q.fps} fps</span><span class="chip ${q.brillo<35||q.brillo>200?'wn':''}">Brillo ${q.brillo}</span><span class="chip ${q.nitidez<60?'wn':''}">Nitidez ${q.nitidez}</span>${q.ir?'<span class="chip">Infrarrojo</span>':''}<span class="chip">${esc(q.tipo)}</span></div>${q.consejos.map(c=>`<p class="mu" style="margin:6px 0 0">• ${esc(c)}</p>`).join('')}`})}).catch(()=>{})}
+const SN={};setInterval(()=>{if(S.tab=='cam'&&!S.zn){loadSnaps();loadFichas()}},60000);
+const TABS=[['ini','Inicio','shield'],['cam','Cámaras','cam'],['ale','Alertas','bell'],['mej','Mejorar','up'],['aju','Ajustes','gear']];
+function head(){return `<div class="seg" role="group" aria-label="Tipo de lugar">${Object.entries(MODES).map(([k,v])=>`<button data-a="mode" data-k="${k}" aria-pressed="${S.mode==k}">${v}</button>`).join('')}</div>`}
+const V={
+ini(){const rec=S.ev.find(e=>Date.now()-e.at<6e5),pas=[[S.cams.length>0,'Agrega tu primera cámara','cam'],[Object.keys(S.done).length>0,'Marca una medida de seguridad','mej'],[S.con.length>0,'Agrega un contacto de aviso','aju']].filter(x=>!x[0]),H=rec?['er','bell','Alerta reciente',rec.t+' · '+rec.c+' · '+ago(rec.at)]:!S.srv.u?['wn','shield','Sin servidor','Conecta el servidor en Ajustes para recibir alertas y compartir el estado.']:SYS.err?['wn','shield','Sin conexión con el servidor','No se pudo consultar el estado. Revisa dirección y token en Ajustes.']:S.down&&S.arm!='off'?['er','bell','Sin vigilancia','El analizador no responde: nadie está analizando las cámaras.']:S.arm!='off'&&caidas().length?['er','bell','Hay cámaras sin vigilar',caidas().map(x=>x[0]+' ('+(EST[x[1]]||x[1])+')').join(', ')]:S.arm=='off'?['wn','shield','Sin vigilancia','Las cámaras graban, pero no avisan. Arma el sistema al salir.']:['ok','shield','Todo en orden',S.arm=='per'?'Vigilando el perímetro.':'Vigilando todas las cámaras.'],n=score(),[l,c]=lvl(n),pend=list().filter(x=>S.done[x[0]]!='si').sort((a,b)=>b[3]-a[3]).slice(0,3);
+return `<div class="hero" style="--c:var(--${H[0]})"><span class="orb">${ico(H[1])}</span><div class="g"><h2>${H[2]}</h2><p class="mu" style="margin:2px 0 0">${H[3]}</p></div></div>
+<div class="tiles" role="group" aria-label="Estado del sistema">${[['off','Desarmado','unlock'],['per','Perímetro','home'],['tot','Armado total','lock']].map(x=>`<button data-a="arm" data-k="${x[0]}" aria-pressed="${S.arm==x[0]}">${ico(x[2])}${x[1]}</button>`).join('')}</div>
+<p class="mu" style="margin:0 4px 10px">${S.arm=='off'?'Desarmado: sin avisos.':S.arm=='per'?'Perímetro: vigilan las cámaras con horario Siempre o Noche. Ideal para estar dentro.':'Armado total: avisos de todas las cámaras. Ideal al salir o dormir.'}</p>
+<div class="sec" style="margin-top:8px">Escenas</div><div class="row" style="margin-bottom:10px">${SC[S.mode].map((x,i)=>`<button class="btn s sm" data-a="sc" data-k="${i}">${x[0]}</button>`).join('')}</div>
+<button class="btn d sos" data-a="sos">${ico('bell')} Pedir ayuda</button>
+${S.sosOn?`<div class="card" style="border-color:var(--er)"><h3>Pide ayuda ahora</h3>${S.con.length?S.con.map(c=>{const t=c.replace(/[^\d+]/g,'');return `<div class="it"><div class="g"><b>${esc(c)}</b></div>${t?`<a class="btn a sm" href="tel:${t}">Llamar</a>`:''}</div>`}).join(''):'<p class="mu">Aún no tienes contactos. Agrégalos en Ajustes.</p>'}<button class="btn s sm" data-a="sosx">Ya estoy bien</button></div>`:''}
+${pas.length?`<div class="card"><h3>Primeros pasos</h3>${pas.map(x=>`<div class="it"><div class="g">${x[1]}</div><button class="btn s sm" data-a="tab" data-k="${x[2]}">Ir</button></div>`).join('')}</div>`:''}
+<div class="sec">Salud del sistema</div><div class="card">${salud().map(x=>`<div class="it"><span class="chip ${x[0]}">${x[0]=='ok'?'Bien':x[0]=='wn'?'Revisar':'Falla'}</span><div class="g">${esc(x[1])}</div>${x[2]?`<button class="btn s sm" data-a="tab" data-k="${x[2]}">Ir</button>`:''}</div>`).join('')}</div>
+<div class="card"><div class="row sp"><div><span class="lb">Medidas completadas</span><div class="big tn">${n}%</div></div><span class="chip ${c}">${l}</span></div><div class="bar" style="margin-top:12px"><i style="width:${n}%"></i></div><p class="mu">Mide las medidas que marcaste, no el riesgo real de tu lugar.</p></div>
+<div class="sec">Cobertura por zona</div><div class="card">${ZON[S.mode].map(z=>{const n=S.cams.filter(c=>c.z==z).length;return `<div class="it"><div class="g"><h3>${z}</h3><span class="mu">${n?n+(n>1?' cámaras':' cámara'):'Ninguna cámara apunta aquí'}</span></div><span class="chip ${n?'ok':'wn'}">${n?'Cubierta':'Sin cubrir'}</span></div>`}).join('')}</div>
+<div class="sec">Lo que más sube tu nivel</div><div class="card">${pend.length?pend.map(x=>`<div class="it"><div class="g"><h3>${x[1]}</h3><span class="mu">${x[2]||'Marca el avance en Mejorar.'}</span></div><button class="btn s sm" data-a="plan" data-k="${x[0]}">Planear</button></div>`).join(''):'<p class="ok">Cubriste todo lo de esta lista.</p>'}</div>`},
+cam(){const z=ZON[S.mode];return `<h2>Cámaras</h2><p class="mu">El analizador de Python lee estas cámaras desde config.json. Elige qué detectar y descarga el archivo en Ajustes.</p>
+${S.zn?`<div class="card"><h3>Zona de vigilancia</h3><p class="mu">Toca la imagen para marcar los puntos del área. Si no marcas nada, se vigila todo el cuadro.</p><canvas id="zc" width="480" height="270" style="touch-action:manipulation"></canvas><div class="row" style="margin-top:10px"><button class="btn sm" data-a="zs">Guardar zona</button><button class="btn s sm" data-a="zu">Quitar último punto</button><button class="btn s sm" data-a="zc">Borrar zona</button><button class="btn s sm" data-a="zx">Cerrar</button></div></div>`:''}
+${S.cams.length?S.cams.map(c=>`<div class="card"><div class="snap" data-s="${slug(c.n)}"><img alt="Última captura de ${esc(c.n)}" hidden><p class="mu">${S.srv.u?'Sin imagen todavía. El analizador sube una captura cada minuto.':'Conecta el servidor en Ajustes para ver la última captura.'}</p></div><div data-f="${slug(c.n)}"><p class="mu" style="margin:8px 0 0">${S.srv.u?'Esperando el diagnóstico del analizador…':''}</p></div><div class="row sp" style="margin-top:10px"><div><h3>${esc(c.n)}</h3><span class="mu">${esc(c.z)} · sensibilidad ${c.s}% · ${esc(c.h)}</span></div><div class="row">${S.srv.u?`<button class="btn s sm" data-a="zn" data-k="${c.id}">Zona</button>`:''}${S.srv.v?`<a class="btn s sm" target="_blank" rel="noopener" href="${esc(S.srv.v.replace(/\/$/,''))}/stream.html?src=${slug(c.n)}">Ver en vivo</a>`:''}<button class="btn d sm" data-a="del" data-k="${c.id}">Quitar</button></div></div><div class="row" style="margin-top:8px">${chips(c.m)}</div>
+<details><summary>Configuración del analizador</summary><pre>${esc(py(c))}</pre><button class="btn s sm" data-a="copy" data-k="${c.id}" style="margin-top:8px">Copiar configuración</button></details></div>`).join(''):'<div class="card"><p>Aún no hay cámaras. Agrega la primera abajo.</p></div>'}
+<div class="card"><h3>Conectar cámaras nuevas</h3><p class="mu">En el equipo del analizador, el primer comando busca cámaras en tu red. El segundo prueba la conexión, mide la imagen y la agrega a config.json con ajustes automáticos. Sirve para cámaras de red, webcams USB, transmisiones web, fotos fijas y archivos de video.</p><pre>python conectar.py descubrir
+python conectar.py agregar 192.168.1.20 --nombre Entrada --marca hikvision --usuario admin --clave CLAVE</pre></div>
+<details class="card"><summary>Agregar cámara</summary><div style="margin-top:10px"><label class="lb" for="n">Nombre</label><input id="n" placeholder="Ej. Portón principal">
+<label class="lb" for="z">Zona</label><select id="z">${z.map(a=>`<option>${a}</option>`).join('')}</select>
+<label class="lb" for="tp">Tipo de cámara</label><select id="tp"><option value="rtsp">Cámara de red (RTSP / ONVIF)</option><option value="mjpeg">Transmisión web (MJPEG)</option><option value="instantanea">Foto fija por web (snapshot)</option><option value="usb">Webcam USB (número, ej. 0)</option><option value="archivo">Archivo de video</option></select>
+<label class="lb" for="mk">Marca (solo cámaras de red)</label><select id="mk">${Object.entries(MK).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select>
+<label class="lb" for="u">IP o dirección (sin usuario ni clave)</label><input id="u" inputmode="url" placeholder="192.168.1.20  ·  http://…  ·  0  ·  video.mp4">
+<span class="lb">Qué debe detectar</span>${Object.entries(MOD).map(([k,v])=>`<label class="k"><input type="checkbox" name="m" value="${k}"${k=='per'?' checked':''}>${v[0]}</label>`).join('')}
+<label class="lb" for="s" style="margin-top:10px">Sensibilidad: <b id="sv">60</b>%</label><input id="s" type="range" min="20" max="90" value="60" oninput="sv.textContent=this.value">
+<label class="lb" for="h">Cuándo vigila</label><select id="h"><option value="Siempre">Siempre (armado o perímetro)</option><option value="Noche">Solo de noche (armado o perímetro)</option><option value="Armado">Solo en armado total</option></select>
+<button class="btn a" data-a="add">Agregar cámara</button></div></details>`},
+ale(){const H24=Array(24).fill(0);S.ev.forEach(e=>H24[new Date(e.at).getHours()]++);const mx=Math.max(...H24,1),pk=H24.indexOf(Math.max(...H24)),zc={};S.ev.forEach(e=>{const c=S.cams.find(x=>x.n==e.c);if(c)zc[c.z]=(zc[c.z]||0)+1});const top=Object.entries(zc).sort((a,b)=>b[1]-a[1])[0];return `<h2>Alertas</h2><div class="row" style="margin:8px 0">${S.srv.u?'<button class="btn a" data-a="syn">Sincronizar</button>':''}${S.ev.length?'<button class="btn s" data-a="clr">Borrar historial</button>':''}</div>
+${S.srv.u?`<div class="card"><h3>Informe de 7 días</h3>${INF?`<p><b>${INF.total}</b> alertas · <b>${INF.falsas}</b> falsas${INF.top.length?'. Más activas: '+INF.top.map(x=>esc(x[0])+' ('+x[1]+')').join(', '):''}.</p>${INF.cons.map(c=>`<p class="mu">• ${esc(c)}</p>`).join('')}`:'<p class="mu">Resume las alertas de la última semana y sugiere ajustes.</p>'}<button class="btn s sm" data-a="inf">${INF?'Actualizar':'Calcular'}</button></div>`:''}
+${S.ev.length>2?`<div class="card"><h3>Actividad por hora</h3><div class="hr" aria-hidden="true">${H24.map(v=>`<i class="${v?'on':''}" style="height:${Math.max(4,v/mx*100)}%"></i>`).join('')}</div><p class="mu">${top?`Más movimiento en ${top[0]}, sobre todo hacia las ${pk}:00. Revisa la iluminación y el horario de esa zona.`:'Aún no hay zona con actividad destacada.'}</p></div>`:''}<div class="card">${S.ev.length?S.ev.map((e,i)=>`<div class="it"><span class="chip ${e.l}">${e.l=='er'?'Alta':'Media'}</span><div class="g"><b>${esc(e.t)}</b><br><span class="mu">${esc(e.c)} · ${ago(e.at)}</span>${e.foto?`<br><button class="btn s sm" style="margin-top:6px" data-a="ph" data-k="${e.id}">Ver foto</button>`:''}${S.cams.some(c=>c.n==e.c)?`<br><button class="btn s sm" style="margin-top:6px" data-a="fa" data-k="${i}">Falsa alarma</button>`:''}</div></div>`).join(''):'<p>'+(S.srv.u?'Sin alertas. Cuando una cámara detecte algo con el sistema armado, aparecerá aquí.':'Conecta el servidor en Ajustes para recibir las alertas de tus cámaras.')+'</p>'}</div>`},
+mej(){const n=score();return `<h2>Mejorar</h2><p class="mu">Seguridad es más que cámaras. Marca cada medida: pendiente, planeada o lista.</p>
+<div class="card"><div class="row sp"><b>Medidas completadas</b><b class="tn">${n}%</b></div><div class="bar" style="margin-top:8px"><i style="width:${n}%"></i></div></div>
+${evalCard()}
+<div class="card"><h3>Capas de protección</h3>${['Disuadir','Detectar','Demorar','Responder'].map(k=>{const a=list().filter(x=>CAPA[x[0]]==k),d=a.filter(x=>S.done[x[0]]=='si').length;return `<div class="it"><div class="g"><b>${k}</b><div class="bar" style="margin-top:6px"><i style="width:${a.length?100*d/a.length:0}%"></i></div></div><span class="mu tn">${d} de ${a.length}</span></div>`}).join('')}<p class="mu">Una buena protección combina las cuatro capas. Las cámaras ayudan a detectar, pero no demoran ni responden por sí solas.</p></div>
+${[['Para cualquier lugar',CK.com],['Para '+MODES[S.mode].toLowerCase(),CK[S.mode]]].map(([t,a])=>`<div class="sec">${t}</div><div class="card">${a.map(x=>{const d=S.done[x[0]];return `<div class="it"><div class="g"><h3>${x[1]}</h3><span class="mu">${x[2]}</span></div><button class="btn sm ${d=='si'?'a':'s'}" data-a="plan" data-k="${x[0]}">${d=='si'?'Lista':d=='plan'?'Planeada':'Pendiente'}</button></div>`}).join('')}</div>`).join('')}`},
+aju(){return `<h2>Ajustes</h2><div class="sec">Contactos de aviso</div><div class="card">${S.con.map((c,i)=>`<div class="it"><div class="g"><b>${esc(c)}</b></div><button class="btn d sm" data-a="dc" data-k="${i}">Quitar</button></div>`).join('')||'<p class="mu">Agrega a quien debe enterarse primero.</p>'}
+<label class="lb" for="cn" style="margin-top:12px">Nombre y teléfono</label><input id="cn" placeholder="Ej. Marta · 300 123 4567"><button class="btn" data-a="ac">Agregar contacto</button></div>
+<div class="sec">Apariencia</div><div class="card"><span class="lb">Tema</span><div class="seg">${[['auto','Auto'],['light','Claro'],['dark','Oscuro']].map(x=>`<button data-a="ui" data-p="t" data-k="${x[0]}" aria-pressed="${S.ui.t==x[0]}">${x[1]}</button>`).join('')}</div>
+<span class="lb" style="margin-top:14px">Color principal</span><div class="row">${PAL.map(c=>`<button class="sw" style="background:${c}" data-a="ui" data-p="c" data-k="${c}" aria-label="Color ${c}" aria-pressed="${S.ui.c==c}"></button>`).join('')}<input id="cp" type="color" aria-label="Color personalizado" value="${/^#[0-9a-f]{6}$/i.test(S.ui.c)?S.ui.c:'#ff5a2c'}"></div>
+${avisoColor()}<span class="lb" style="margin-top:14px">Esquinas</span><div class="seg">${[[8,'Rectas'],[20,'Suaves'],[28,'Redondas']].map(x=>`<button data-a="ui" data-p="r" data-k="${x[0]}" aria-pressed="${S.ui.r==x[0]}">${x[1]}</button>`).join('')}</div>
+<span class="lb" style="margin-top:14px">Tamaño</span><div class="seg">${[[.92,'Pequeño'],[1,'Normal'],[1.12,'Grande']].map(x=>`<button data-a="ui" data-p="z" data-k="${x[0]}" aria-pressed="${S.ui.z==x[0]}">${x[1]}</button>`).join('')}</div></div>
+<div class="sec">Servidor de avisos</div><div class="card"><label class="lb" for="su">Dirección del servidor</label><input id="su" inputmode="url" placeholder="http://192.168.1.10:8000" value="${esc(S.srv.u)}"><label class="lb" for="sk">Token</label><input id="sk" type="password" value="${esc(S.srv.k)}"><label class="lb" for="sv2">Servidor de video (go2rtc, opcional)</label><input id="sv2" inputmode="url" placeholder="http://192.168.1.10:1984" value="${esc(S.srv.v||'')}"><details style="margin:0 0 12px"><summary>Iniciar sesión con usuario y clave</summary><label class="lb" for="lu">Usuario</label><input id="lu" autocomplete="username"><label class="lb" for="lp">Clave</label><input id="lp" type="password" autocomplete="current-password"><label class="lb" for="lc">Código 2FA (si lo activaste)</label><input id="lc" inputmode="numeric" autocomplete="one-time-code"><button class="btn s" data-a="login">Entrar</button></details>
+<label class="k"><input type="checkbox" id="sr"${S.srv.rec?' checked':''}>Recordar el token en este dispositivo</label><div class="row"><button class="btn" data-a="svs">Guardar y probar</button><button class="btn s" data-a="cfg">Descargar config.json</button><button class="btn s" data-a="g2r">Descargar go2rtc.yaml</button><button class="btn s" data-a="ntf">Activar notificaciones</button></div><p class="mu">Con el servidor conectado, el estado y las alertas se comparten entre tus dispositivos. El config.json es el archivo que lee el analizador de Python.</p></div>
+${S.srv.u?`<div class="sec">Usuarios y seguridad</div><div class="card"><p class="mu">Cada persona entra con su usuario y clave (mínimo 10 caracteres). Activa la verificación en dos pasos desde tu propia sesión.</p>${TFA?`<div class="card" style="background:var(--s2)"><b>Escribe este secreto en tu app de autenticación</b><pre>${esc(TFA.secreto)}</pre><label class="lb" for="tc">Código de 6 dígitos</label><input id="tc" inputmode="numeric" autocomplete="one-time-code"><button class="btn" data-a="t2c">Confirmar</button></div>`:''}${USR.map(u=>`<div class="it"><div class="g"><b>${esc(u.nombre)}</b><br><span class="mu">${esc(u.rol)} · ${u.totp_activo?'2FA activo':'sin 2FA'}</span></div></div>`).join('')}<label class="lb" for="un" style="margin-top:12px">Usuario nuevo</label><input id="un" autocomplete="off"><label class="lb" for="uc">Clave</label><input id="uc" type="password" autocomplete="new-password"><label class="lb" for="ur">Rol</label><select id="ur"><option value="familiar">Familiar</option><option value="ver">Solo ver</option><option value="propietario">Propietario</option></select><div class="row"><button class="btn" data-a="ucr">Crear usuario</button><button class="btn s" data-a="ul">Ver usuarios</button><button class="btn s" data-a="t2">Activar 2FA</button><button class="btn s" data-a="au">Registro de actividad</button></div>${AUD.slice(0,30).map(a=>`<p class="mu" style="margin:6px 0 0">${new Date(a.hora*1000).toLocaleString()} · ${esc(a.quien)}: ${esc(a.accion)}</p>`).join('')}</div>`:''}
+${S.srv.u?`<div class="sec">Dispositivos</div><div class="card"><p class="mu">Cada teléfono o analizador usa su propio token y puedes revocarlo. Con el token principal eres el propietario.</p>${DEVTOK?`<div class="card" style="background:var(--s2)"><b>Token nuevo (se muestra una sola vez)</b><pre>${esc(DEVTOK)}</pre></div>`:''}${DEV.map(d=>`<div class="it"><div class="g"><b>${esc(d.nombre)}</b><br><span class="mu">${d.rol}${d.activo?'':' · revocado'}</span></div>${d.activo?`<button class="btn d sm" data-a="dr" data-k="${d.id}">Revocar</button>`:''}</div>`).join('')}<label class="lb" for="dnm" style="margin-top:12px">Nombre del dispositivo</label><input id="dnm" placeholder="Ej. Celular de Marta"><label class="lb" for="drl">Permiso</label><select id="drl"><option value="familiar">Familiar: ver y armar</option><option value="ver">Solo ver</option><option value="analizador">Analizador (cámaras)</option></select><div class="row"><button class="btn" data-a="dn">Crear token</button><button class="btn s" data-a="dl">Actualizar lista</button></div></div>`:''}
+<div class="card"><h3>Respaldo</h3><p class="mu">Guarda tus cámaras, medidas y ajustes en un archivo. El token del servidor no se incluye.</p><div class="row"><button class="btn s" data-a="exp">Exportar respaldo</button><button class="btn s" data-a="imp">Restaurar</button></div><input id="fi" type="file" accept="application/json" hidden></div>
+<div class="card"><h3>Cómo funciona</h3><p class="mu">Este panel guarda tus cámaras, medidas y avisos en este dispositivo. El análisis lo hacen los scripts de Python en un computador o mini PC dentro del lugar, que envían los avisos a tu servidor.</p><button class="btn d" data-a="rst">Borrar todos los datos</button></div>`}};
+function render(){if(S.tab=='ale')S.seen=Date.now();const nb=S.ev.filter(e=>e.at>S.seen).length;$('#v').innerHTML=head()+V[S.tab]();$('#nav').innerHTML=TABS.map(t=>`<button data-a="tab" data-k="${t[0]}"${S.tab==t[0]?' aria-current="page"':''}><i>${ico(t[2])}${t[0]=='ale'&&nb?`<b>${nb}</b>`:''}</i>${t[1]}</button>`).join('');const s=$('#st');const dn=S.srv.u&&S.down&&S.arm!='off';s.textContent=dn?'Sin vigilancia: analizador sin señal':ARM[S.arm];s.className='chip '+(dn?'er':S.arm=='off'?'':'ac');if(S.tab=='cam'){loadSnaps();loadFichas()}if(S.zn&&S.tab=='cam')requestAnimationFrame(zdraw)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,k=b.dataset.k;
+if(a=='tab'){S.tab=k;if(k=='ale'&&S.srv.u)S.ev.forEach(e=>{if(e.id&&!e.vis){e.vis=1;API('/alertas/'+e.id,{method:'PATCH',body:JSON.stringify({estado:'visto'})}).catch(()=>{})}})}else if(a=='mode')S.mode=k;else if(a=='arm'){setArm(k);toast(ARM[k])}
+else if(a=='sc'){const x=SC[S.mode][k];setArm(x[1]);toast('Escena: '+x[0])}
+else if(a=='ui'){const p=b.dataset.p;S.ui[p]=p=='r'||p=='z'?+k:k;ui()}
+else if(a=='exp'){const o={...S,srv:{...S.srv,k:''}},l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,2)],{type:'application/json'}));l.download='guardia-respaldo.json';l.click();return}
+else if(a=='imp'){$('#fi').click();return}
+else if(a=='plan'){const d=S.done[k];S.done[k]=!d?'plan':d=='plan'?'si':null}
+else if(a=='del'){snap();S.cams=S.cams.filter(c=>c.id!=k);toast('Cámara quitada',1)}
+else if(a=='copy'){try{navigator.clipboard.writeText(py(S.cams.find(c=>c.id==k)));toast('Configuración copiada')}catch(x){toast('No se pudo copiar')}return}
+else if(a=='add'){const n=$('#n').value.trim(),tp=$('#tp').value,u=fuente(tp,$('#mk').value,$('#u').value),m=[...document.querySelectorAll('[name=m]:checked')].map(i=>i.value);if(!n||!u||!m.length)return toast('Falta nombre, dirección o qué detectar');if(/\/\/[^/@]*@/.test(u))return toast('Usuario y clave no van aquí: ponlos en config.json del analizador');if(!okFuente(tp,u))return toast('La dirección no corresponde al tipo de cámara elegido');S.cams.push({id:S.nid++,n,z:$('#z').value,u,t:tp,m,s:+$('#s').value,h:$('#h').value});toast('Cámara agregada')}
+else if(a=='clr'){snap();S.ev=[];toast('Historial borrado',1)}else if(a=='ac'){const v=$('#cn').value.trim();if(v)S.con.push(v)}else if(a=='dc')S.con.splice(k,1);
+else if(a=='svs'){S.srv={u:$('#su').value.trim(),k:$('#sk').value,v:$('#sv2').value.trim(),rec:$('#sr').checked};save();API('/estado').then(x=>{S.arm=x.armado;save();render();toast('Conectado')}).catch(()=>toast('No se pudo conectar: revisa dirección y token'));return}
+else if(a=='syn'){sync();return}
+else if(a=='cfg'){const c={servidor:S.srv.u||'http://192.168.1.10:8000',token:S.srv.k||'pon-una-clave-larga',modelo:'yolov8n.pt',noche:['18:00','06:00'],camaras:S.cams.map(c=>({nombre:c.n,zona:c.z,fuente:c.u,tipo:c.t||'rtsp',modulos:c.m,confianza:c.s/100,horario:c.h,espera:30,confirmar:3,merodeo_seg:20,poligono:c.p||[],usuario:'',clave:''}))},l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify(c,null,2)],{type:'application/json'}));l.download='config.json';l.click();return}
+else if(a=='sos'){S.sosOn=true;if(S.srv.u)API('/alertas',{method:'POST',body:JSON.stringify({id:uid(),hora:Date.now()/1000,camara:'App',zona:'Manual',tipo:'sos'})}).catch(()=>{});else S.ev.unshift({t:'Ayuda solicitada',c:'App',at:Date.now(),l:'er'})}
+else if(a=='sosx')S.sosOn=false;
+else if(a=='fa'){const e=S.ev[k],c=S.cams.find(x=>x.n==e.c);if(c){snap();c.s=Math.max(20,c.s-5);if(S.srv.u&&e.id)API('/alertas/'+e.id,{method:'PATCH',body:JSON.stringify({estado:'falsa_alarma'})}).catch(()=>{});S.ev.splice(k,1);toast('Sensibilidad de '+c.n+' bajó a '+c.s+'%',1)}}
+else if(a=='undo'){if(UN){S=JSON.parse(UN);UN=null;$('#toast').hidden=true}}
+else if(a=='ph'){fetch(S.srv.u.replace(/\/$/,'')+'/alertas/'+k+'/foto',{headers:{'x-token':S.srv.k}}).then(x=>x.ok?x.blob():Promise.reject()).then(bl=>window.open(URL.createObjectURL(bl))).catch(()=>toast('No se pudo cargar la foto'));return}
+else if(a=='dl'){DEVTOK='';API('/dispositivos').then(x=>{DEV=x;render()}).catch(()=>toast('Solo el propietario puede ver los dispositivos'));return}
+else if(a=='dn'){const n=$('#dnm').value.trim();if(!n)return toast('Pon un nombre');API('/dispositivos',{method:'POST',body:JSON.stringify({nombre:n,rol:$('#drl').value})}).then(x=>{DEVTOK=x.token;return API('/dispositivos')}).then(x=>{DEV=x;render()}).catch(()=>toast('No se pudo crear: ¿eres el propietario?'));return}
+else if(a=='dr'){API('/dispositivos/'+k,{method:'DELETE'}).then(()=>API('/dispositivos')).then(x=>{DEV=x;render()}).catch(()=>toast('No se pudo revocar'));return}
+else if(a=='zn'){const c=S.cams.find(x=>x.id==k);S.zn={id:c.id,pts:(c.p||[]).map(q=>q.slice())};ZI=null;fetch(S.srv.u.replace(/\/$/,'')+'/captura/'+slug(c.n),{headers:{'x-token':S.srv.k}}).then(x=>x.ok?x.blob():Promise.reject()).then(bl=>{ZI=new Image();ZI.onload=zdraw;ZI.src=URL.createObjectURL(bl)}).catch(()=>toast('Aún no hay captura: el analizador la sube cada minuto'))}
+else if(a=='zu')S.zn.pts.pop();
+else if(a=='zc')S.zn.pts=[];
+else if(a=='zx')S.zn=null;
+else if(a=='zs'){const c=S.cams.find(x=>x.id==S.zn.id);if(S.zn.pts.length&&S.zn.pts.length<3)return toast('Marca al menos 3 puntos');c.p=S.zn.pts;S.zn=null;toast('Zona guardada. Descarga el config.json de nuevo')}
+else if(a=='rq'){S.rq=S.rq||{};S.rq[b.dataset.q]=+k}
+else if(a=='qs'){const r=riesgo(S.rq||{},list(),QS.com.concat(QS[S.mode]),CAPA,new Set(list().filter(x=>S.done[x[0]]=='si').map(x=>x[0])));toast('Completarla reduce ~'+reduccion(r.plan,k)+'% del plan pendiente');return}
+else if(a=='inf'){API('/alertas?limite=500').then(x=>{INF=resumen(x,Date.now());render()}).catch(()=>toast('No se pudo calcular el informe'));return}
+else if(a=='login'){const u=$('#su').value.trim();if(!u)return toast('Escribe primero la dirección del servidor');S.srv.u=u;fetch(u.replace(/\/$/,'')+'/auth/entrar',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({nombre:$('#lu').value.trim(),clave:$('#lp').value,codigo:$('#lc').value.trim()||null})}).then(x=>x.ok?x.json():Promise.reject(x.status)).then(x=>{S.srv.k=x.token;save();toast('Sesión iniciada como '+x.rol);sync(true);render()}).catch(e=>toast(e==429?'Cuenta bloqueada unos minutos':'Usuario, clave o código incorrectos'));return}
+else if(a=='ul'){API('/usuarios').then(x=>{USR=x;render()}).catch(()=>toast('Solo el propietario puede ver los usuarios'));return}
+else if(a=='ucr'){const n=$('#un').value.trim(),c=$('#uc').value;if(!n||c.length<10)return toast('Usuario y clave de al menos 10 caracteres');API('/usuarios',{method:'POST',body:JSON.stringify({nombre:n,clave:c,rol:$('#ur').value})}).then(()=>API('/usuarios')).then(x=>{USR=x;render();toast('Usuario creado')}).catch(()=>toast('No se pudo crear: ¿ya existe o no eres propietario?'));return}
+else if(a=='t2'){API('/auth/2fa',{method:'POST'}).then(x=>{TFA=x;render()}).catch(()=>toast('Inicia sesión con tu usuario para activar el 2FA'));return}
+else if(a=='t2c'){API('/auth/2fa/confirmar',{method:'POST',body:JSON.stringify({codigo:$('#tc').value.trim()})}).then(()=>{TFA=null;render();toast('2FA activado')}).catch(()=>toast('Código incorrecto'));return}
+else if(a=='au'){API('/auditoria').then(x=>{AUD=x;render()}).catch(()=>toast('Solo el propietario puede ver el registro'));return}
+else if(a=='g2r'){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob(['api:\n  username: guardia\n  password: CAMBIA-ESTA-CLAVE\nstreams:\n'+S.cams.filter(c=>!c.t||c.t=='rtsp').map(c=>'  '+slug(c.n)+': '+c.u.replace('//','//USUARIO:CLAVE@')+'\n').join('')],{type:'text/yaml'}));l.download='go2rtc.yaml';l.click();return}
+else if(a=='ntf'){try{Notification.requestPermission().then(x=>toast(x=='granted'?'Notificaciones activadas':'Permiso denegado'))}catch(x){toast('Este navegador no las admite')}return}
+else if(a=='rst'){if(!confirm('Se borrarán cámaras, medidas y avisos.'))return;try{localStorage.removeItem('guardia')}catch(x){}location.reload();return}
+save();render()});
+S.cams=S.cams.filter(c=>!((c.n=='Entrada'&&/\/\/(usuario:clave@)?192\.168\.1\.20:554\/stream1$/.test(c.u))||(c.n=='Patio trasero'&&/\/\/(usuario:clave@)?192\.168\.1\.21:554\/stream1$/.test(c.u))));S.cams.forEach(c=>{c.u=c.u.replace(/\/\/[^/@]*@/,'//');c.m=c.m.filter(k=>MOD[k]);if(!c.m.length)c.m=['per']});ui();render();document.addEventListener('input',e=>{if(e.target.id=='cp'){S.ui.c=e.target.value;ui();save()}});document.addEventListener('change',e=>{if(e.target.id=='fi'&&e.target.files[0]){const f=new FileReader();f.onload=()=>{try{const j=JSON.parse(f.result);if(!Array.isArray(j.cams))throw 0;const k=S.srv.k;Object.assign(S,j);S.cams=S.cams.filter(c=>c&&typeof c.n=='string'&&typeof c.u=='string'&&Array.isArray(c.m));S.srv=Object.assign({u:'',k:'',v:''},j.srv,{k});save();ui();render();toast('Respaldo restaurado')}catch(x){toast('Archivo no válido')}};f.readAsText(e.target.files[0])}});setInterval(()=>sync(true),15000);sync(true);
+if('serviceWorker'in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>

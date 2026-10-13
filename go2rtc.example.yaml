@@ -1,0 +1,5 @@
+api:
+  username: guardia
+  password: CAMBIA-ESTA-CLAVE
+streams:
+  entrada: rtsp://usuario:clave@192.168.1.20:554/stream1
